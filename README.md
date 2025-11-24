@@ -71,8 +71,6 @@ Abrir o Jupyter Notebook:
 jupyter notebook
 ```
 
-Observação: se desejar, posso gerar um `requirements.txt` com versões específicas.
-
 **Código e módulos**
 
 O código reutilizável está organizado em módulos temáticos em `src/`:
