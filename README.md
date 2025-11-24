@@ -19,13 +19,24 @@ O projeto foca em técnicas de engenharia de features, avaliação de métricas 
 
 - `data/raw/` : dados originais (ex.: `dataset_pronto_socorro.csv`)
 - `data/processed/` : dados transformados prontos para modelagem
-- `notebooks/` : Jupyter notebooks com análise e experimentos
+- `models/` : modelos treinados e salvos
+- `notebooks/` : Jupyter notebooks com análise, modelagem e predição
 	- `1 - Análise Exploratória.ipynb` : exploração inicial dos dados
 	- `2 - Modelo Linear.ipynb` : implementação de um modelo linear básico
 	- `2.1 - Modelo Linear + Features.ipynb` : adição de novas features
 	- `2.2 - Modelo Linear Refinado.ipynb` : refinamentos e avaliação
-- `src/` : código fonte com funções de engenharia de features
-	- `features/feature_engineering.py` : funções para transformar os dados
+	- `3 - Modelos Regulares.ipynb` : exploração de modelos com regularização
+	- `4 - Modelos Final.ipynb` : modelos finais e comparações
+	- `5 - Predição.ipynb` : realização de predições e validação
+- `src/` : código fonte reutilizável e modular
+	- `features/` : engenharia de features
+		- `feature_engineering.py` : funções para transformar os dados
+	- `forecast/` : módulo de predição
+		- `recursive_forecast.py` : predições recursivas/encadeadas
+	- `training/` : treinamento e avaliação
+		- `model_evaluation.py` : métricas e avaliação de modelos
+	- `validation/` : validação e processamento
+		- `sample_generation.py` : geração de amostras para validação
 - `README.md` : este arquivo
 
 **Dados**
@@ -35,9 +46,13 @@ O projeto foca em técnicas de engenharia de features, avaliação de métricas 
 
 **Notebooks e fluxo recomendado**
 
-1. Abrir `notebooks/1 - Análise Exploratória.ipynb` para entender as colunas, valores faltantes e distribuições.
-2. Executar `notebooks/2 - Modelo Linear.ipynb` para ver uma baseline de modelos lineares.
-3. Passar para `2.1` e `2.2` para engenharia de features e refinamentos.
+1. **`1 - Análise Exploratória.ipynb`** : exploração inicial dos dados, colunas, valores faltantes e distribuições
+2. **`2 - Modelo Linear.ipynb`** : baseline com modelos lineares
+3. **`2.1 - Modelo Linear + Features.ipynb`** : engenharia de features e adição de novas variáveis
+4. **`2.2 - Modelo Linear Refinado.ipynb`** : refinamentos e avaliação do modelo linear
+5. **`3 - Modelos Regulares.ipynb`** : exploração de modelos com regularização (Ridge, Lasso, ElasticNet)
+6. **`4 - Modelos Final.ipynb`** : modelos finais, ensembles e comparações entre abordagens
+7. **`5 - Predição.ipynb`** : realização de predições, validação e análise de resultados
 
 **Como reproduzir localmente**
 
@@ -58,9 +73,16 @@ jupyter notebook
 
 Observação: se desejar, posso gerar um `requirements.txt` com versões específicas.
 
-**Código**
+**Código e módulos**
 
-O código reutilizável está em `src/features/feature_engineering.py`. Use essas funções para transformar os dados antes de treinar modelos nos notebooks.
+O código reutilizável está organizado em módulos temáticos em `src/`:
+
+- **`src/features/feature_engineering.py`** : funções para engenharia de features e transformação dos dados
+- **`src/forecast/recursive_forecast.py`** : módulo para realização de predições recursivas/encadeadas
+- **`src/training/model_evaluation.py`** : funções para avaliação de modelos e cálculo de métricas
+- **`src/validation/sample_generation.py`** : geração de amostras e estratégias de validação
+
+Importe e use essas funções nos notebooks para manter o código limpo e reutilizável.
 
 **Resultados e métricas**
 
@@ -76,17 +98,3 @@ Nos notebooks de modelagem são exploradas métricas típicas para regressão e/
 **Contribuição**
 
 Contribuições e sugestões são bem-vindas. Abra uma issue descrevendo a proposta ou um pull request com mudanças.
-
-**Licença**
-
-Colocar aqui a licença desejada (ex.: MIT) ou manter para discussão.
-
----
-
-Se quiser, posso também:
-
-- Gerar `requirements.txt` automaticamente a partir do ambiente
-- Criar um `Makefile`/scripts para executar pipeline
-- Adicionar um notebook de avaliação final com gráficos resumidos
-
-Diga qual desses próximos passos você prefere que eu faça primeiro.
